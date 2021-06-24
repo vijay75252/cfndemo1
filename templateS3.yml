@@ -14,7 +14,7 @@ Mappings:
   beta:
     S3BucketMetrics: { Name: "bucketfortesting-beta" }
   gamma:
-    S3BucketMetrics: { Name: "bucketfortesting-gamma" }
+    S3BucketMetrics: { Name: "bucketfortesting-gamma1" }
   prod:
     S3BucketMetrics: { Name: "bucketfortesting-prod" }
 
