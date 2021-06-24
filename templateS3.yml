@@ -8,7 +8,7 @@ Outputs:
 Description: Stack for CloudWatchMetrics Load
 
 Parameters:
-  Stage: {Type: String, Default: 'beta'}
+  Stage: {Type: String, Default: 'gamma'}
   
 Mappings:
   beta:
