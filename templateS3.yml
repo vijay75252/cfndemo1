@@ -1,1 +1,38 @@
-aa
+AWSTemplateFormatVersion: 2010-09-09
+
+Outputs:
+  StackArn:
+    Description: Don't remove this output! Pipelines needs this to do it's association.(And LPT. Removing it will break things)
+    Value:
+      Ref: AWS::StackId
+Description: Stack for CloudWatchMetrics Load
+
+Parameters:
+  Stage: {Type: String, Default: 'beta'}
+  
+Mappings:
+  beta:
+    S3BucketMetrics: { Name: "bucketfortesting-beta" }
+  gamma:
+    S3BucketMetrics: { Name: "bucketfortesting-gamma" }
+  prod:
+    S3BucketMetrics: { Name: "bucketfortesting-prod" }
+
+Resources:
+  #1. Bucket for metrics data from redshift
+  S3BucketForCWMetrics:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: {"Fn::FindInMap" : [{"Ref": "Stage"}, "S3BucketMetrics", "Name"]}
+      VersioningConfiguration: 
+        Status: Enabled
+      BucketEncryption:
+        #Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3)
+        ServerSideEncryptionConfiguration:
+            - ServerSideEncryptionByDefault:
+                SSEAlgorithm: AES256
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: s3:ObjectCreated:Put
+            Function: !GetAtt [ CloudWatchUpdateLambda, Arn]
