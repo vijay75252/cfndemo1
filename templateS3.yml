@@ -32,3 +32,15 @@ Resources:
         ServerSideEncryptionConfiguration:
             - ServerSideEncryptionByDefault:
                 SSEAlgorithm: AES256
+  
+  myCluster: 
+    Type: "AWS::Redshift::Cluster"
+    Properties:
+      DBName: "mydb"
+      MasterUsername: "admin"
+      MasterUserPassword: "admin"
+      NodeType: "ds2.xlarge"
+      ClusterType: "single-node"
+      Tags:
+        - Key: foo
+          Value: bar            
