@@ -39,7 +39,7 @@ Resources:
       DBName: "mydb"
       MasterUsername: "master"
       MasterUserPassword: "ADmin8899977779"
-      NodeType: "dc2.large"
+      NodeType: "ds2.xlarge"
       ClusterType: "single-node"
       Tags:
         - Key: foo
