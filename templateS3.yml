@@ -38,7 +38,7 @@ Resources:
     Properties:
       DBName: "mydb"
       MasterUsername: "admin"
-      MasterUserPassword: "admin"
+      MasterUserPassword: "admin12345"
       NodeType: "ds2.xlarge"
       ClusterType: "single-node"
       Tags:
